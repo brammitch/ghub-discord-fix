@@ -34,6 +34,7 @@ function Set-DisableGHubDiscordIntegration {
 
     Write-Output "Discord integration has been disabled in the Logitech G Hub configuration file."
 
+    # Set the configuration file to read-only
     Set-ItemProperty -Path $configPath -Name IsReadOnly -Value $true
 
     Write-Output "The configuration file has been set to read-only."
