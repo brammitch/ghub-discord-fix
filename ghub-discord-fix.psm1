@@ -8,11 +8,13 @@ function Set-DisableGHubDiscordIntegration {
 
     It also sets the configuration file to read-only to prevent further changes.
 
+    These changes will be overwritten if Logitech G Hub is reinstalled or updated. In that case, you may want to run this function again.
+
     .EXAMPLE
     Set-DisableGHubDiscordIntegration
 
     This command will disable Discord integration in Logitech G Hub.
-    #>
+  #>
 
   # Define the path to the G Hub configuration file
   $configPath = "$HOME\AppData\Local\LGHUB\integrations\applet_discord\config.json"
@@ -30,7 +32,7 @@ function Set-DisableGHubDiscordIntegration {
     # Save the updated configuration back to the file
     $configContent | ConvertTo-Json -Depth 10 | Set-Content -Path $configPath -Force
 
-    Write-Output "Discord integration has been disabled in Logitech G Hub."
+    Write-Output "Discord integration has been disabled in the Logitech G Hub configuration file."
 
     Set-ItemProperty -Path $configPath -Name IsReadOnly -Value $true
 
@@ -38,6 +40,6 @@ function Set-DisableGHubDiscordIntegration {
 
   }
   else {
-    Write-Output "Unable to locate Logitech G Hub at $configPath."
+    Write-Output "Unable to locate the Logitech G Hub configuration file at $configPath."
   }
 }
